@@ -1,5 +1,5 @@
 const development = {
-  connString: process.env.MONGODB_CONNECTION_STRING || 'mongodb://localhost/zod',
+  connString: process.env.MONGODB_CONNECTION_STRING || 'mongodb://localhost/darkknight',
   jwtSecretKey: 'Test',
 };
 const production = {

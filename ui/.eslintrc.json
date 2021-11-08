@@ -15,10 +15,9 @@
         "createDefaultProgram": true
       },
       "extends": [
+        "prettier",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "airbnb-typescript/base", // optional
-        "prettier"
+        "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "plugins": [
         "import",
@@ -41,7 +40,8 @@
             "style": "kebab-case"
           }
         ],
-        "import/prefer-default-export": "off", // if using airbnb
+        "no-empty-function":"off",
+        "no-useless-constructor": "off",
         "prettier/prettier": "error"
       }
     },

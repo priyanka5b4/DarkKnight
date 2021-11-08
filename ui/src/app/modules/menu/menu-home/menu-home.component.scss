@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: 0.2em;
+  justify-content: center;
+  align-items: center;
+}
+.brand-image {
+  max-height: 3em;
+  max-width: 3em;
+}

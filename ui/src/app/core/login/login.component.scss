@@ -1,0 +1,55 @@
+@use "~@angular/material" as mat;
+@import "~@angular/material/theming";
+
+.login-page {
+  background: #007991; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #78ffd6,
+    #007991
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #78ffd6,
+    #007991
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  width: 100%;
+  height: 100%;
+}
+
+.login-container {
+  @include mat.elevation(2);
+  height: 100%;
+  background-color: rgb(255 255 255 / 7%);
+  width: 350px;
+}
+
+.title {
+  font-size: 70px;
+  font-weight: bolder;
+  color: #182603a8;
+  justify-self: center;
+  align-self: center;
+}
+
+.login-box {
+  // background-color: rgba(123, 165, 243, 0.6);
+  background-color: transparent;
+  padding: 1em;
+}
+
+:host ::ng-deep .mat-form-field {
+  width: 100% !important;
+}
+
+:host ::ng-deep .mat-flat-button {
+  background-color: rgba($color: #673ab7, $alpha: 0.7);
+}
+
+input {
+  color: black !important;
+}
+:host .mat-radio-button {
+  margin-left: 16px;
+}

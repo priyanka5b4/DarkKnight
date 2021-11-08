@@ -9,6 +9,7 @@ module.exports.updateUser = (id, data, cb) => {
 };
 
 module.exports.createUser = (newUser, cb) => {
+  console.log(newUser)
   const tUser = new User(newUser);
   tUser.password = tUser.generateHash(tUser.password);
   tUser.save((err) => {

@@ -1,0 +1,13 @@
+<div class="header">
+  <mat-card-title>{{ (menu | async)?.name }}</mat-card-title>
+  <span style="flex: 1 1 auto"></span>
+  <button
+    *ngIf="shouldShow"
+    (click)="createProduct()"
+    mat-icon-button
+    style="background-color: greenyellow; color: white"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div></div>

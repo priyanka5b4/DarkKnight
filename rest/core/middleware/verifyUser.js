@@ -12,18 +12,24 @@ exports.isUserAdmin = (req, res, next) => {
 
 exports.isUserAuthorOrAdmin = (req, res, next) => {
   // if user is authenticated in the session, carry on
-  if (req.user && (req.user.role === 'admin' || req.user.role === 'author')) return next();
+  if (req.user && (req.user.role === 'admin' || req.user.role === 'author'))
+    return next();
 };
 
 exports.verifyToken = (req, res, next) => {
-  if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.split(' ')[0] === 'Bearer'
+  ) {
     req.user = {};
     const token = req.headers.authorization.split(' ')[1];
     jwt.verify(token, envConfig.jwtSecretKey, (err, tokenData) => {
       if (err && err.name === 'TokenExpiredError') {
         res.json({ status: false, message: err.name });
       } else if (err) {
-        res.status(400).json({ status: false, message: 'Request Unauthorized' });
+        res
+          .status(400)
+          .json({ status: false, message: 'Request Unauthorized' });
       } else if (tokenData) {
         req.user = tokenData;
         next();
@@ -39,7 +45,7 @@ exports.generateToken = (user) => {
   const token = {
     email: user.email,
     _id: user._id,
-    userHandle: user.userHandle,
+    businessName: user.businessName,
   };
   console.log(token);
   return jwt.sign(token, envConfig.jwtSecretKey, { expiresIn: '30 days' });
@@ -47,7 +53,10 @@ exports.generateToken = (user) => {
 
 // decode a token
 exports.decodeToken = (req) => {
-  if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.split(' ')[0] === 'Bearer'
+  ) {
     req.user = {};
     const token = req.headers.authorization.split(' ')[1];
     jwt.verify(token, envConfig.jwtSecretKey, (err, tokenData) => {

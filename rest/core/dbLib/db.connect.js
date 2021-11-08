@@ -7,18 +7,21 @@ module.exports.connect = (autoReconnect) => {
   console.log('Trying to connect to MongoDB');
 
   const dbOptions = {
-    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    auto_reconnect: true,
-    useFindAndModify: false,
   };
-  if (autoReconnect !== null && autoReconnect !== undefined)
-    dbOptions.auto_reconnect = autoReconnect;
 
   console.log(`DB AUTO RECONNECT: ${dbOptions.auto_reconnect}`);
   console.log(envConfig);
-  mongoose.connect(envConfig.connString, dbOptions);
+  const connect = () => {
+    mongoose.connect(envConfig.connString, dbOptions).catch(rejected => {
+      console.log('Failed Connecting to DB' + rejected);
+      console.log('Trying to reconnect');
+      connect();
+    })
+  }
+
+  connect();
 
   const db = mongoose.connection;
 

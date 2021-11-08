@@ -8,6 +8,8 @@ db.connect(true);
 app.use('/login', require('./core/login/login').apiLogin);
 app.use('/signup', require('./core/login/login').apiSignUp);
 
+app.use('/menu', require('./modules/Menu/menu.routes'));
+app.use('/products', require('./modules/Product/product.routes'));
 app.all('*', middleware.verifyToken);
 
 module.exports = app;

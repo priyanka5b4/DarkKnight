@@ -13,7 +13,7 @@
       <mat-card *ngFor="let menu of menus | async" (click)="openMenu(menu._id)" class="menu">
         <mat-card-header>
           <mat-card-title>{{ menu.name }}</mat-card-title>
-          <mat-card-subtitle>Products: {{ menu.products.length }}</mat-card-subtitle>
+          <mat-card-subtitle>Categories: {{ menu.categories.length }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content> </mat-card-content>
       </mat-card>

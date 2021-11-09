@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponseTypes } from 'src/app/shared/types/httpResponses';
-import { Menu, Product } from 'src/app/shared/types/menuTypes';
+import { Category, Menu, Product } from 'src/app/shared/types/menuTypes';
 
 @Injectable({
   providedIn: 'root',
@@ -32,5 +32,9 @@ export class MenuService {
 
   updateProduct(body: Product) {
     return this.http.put(`/api/products/${body._id}`, body);
+  }
+
+  updateMenu(menu: Menu) {
+    return this.http.put(`/api/menu/${menu._id}`, menu);
   }
 }

@@ -3,11 +3,16 @@
   <span style="flex: 1 1 auto"></span>
   <button
     *ngIf="shouldShow"
-    (click)="createProduct()"
+    (click)="createCategory()"
     mat-icon-button
     style="background-color: greenyellow; color: white"
   >
     <mat-icon>add</mat-icon>
   </button>
 </div>
-<div></div>
+<div>
+  <mat-expansion-panel *ngFor="let category of (menu | async)?.categories">
+    <mat-expansion-panel-header> {{ category.cname }} </mat-expansion-panel-header>
+    content
+  </mat-expansion-panel>
+</div>

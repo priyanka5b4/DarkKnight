@@ -1,6 +1,10 @@
+export interface Category {
+  cname: String;
+  products: Product[];
+}
 export interface Menu {
   name: string;
-  products: [Product];
+  categories: Category[];
   _id: string;
 }
 

@@ -2,13 +2,10 @@ const mongoose = require('mongoose');
 
 const menuSchema = new mongoose.Schema({
   name: String,
-  products: [
+  categories: [
     {
-      product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-      },
-      category: [String],
+      cname: String,
+      products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
     },
   ],
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

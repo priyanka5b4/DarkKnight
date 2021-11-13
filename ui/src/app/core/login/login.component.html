@@ -21,6 +21,7 @@
             <input type="password" matInput formControlName="password" placeholder="Password" />
           </mat-form-field>
           <button mat-flat-button color="primary" type="submit">Login</button>
+          <a href="\EditPass" style="display: block">forgot or edit password?</a>
         </form>
         <form (ngSubmit)="signup()" [formGroup]="signUpForm" *ngIf="formChoice === 'signup'">
           <mat-form-field>
@@ -35,7 +36,24 @@
 
           <mat-form-field>
             <mat-label>Password</mat-label>
-            <input type="password" matInput formControlName="password" placeholder="Password" />
+            <input
+              type="password"
+              matInput
+              formControlName="password"
+              placeholder="Password"
+              (change)="onPasswordchange()"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input
+              type="password"
+              matInput
+              formControlName="passwordAgain"
+              placeholder="Confirm Password"
+              (change)="onPasswordchange()"
+            />
+            <mat-error *ngIf="passwordAgain.hasError('mismatch')">Passwords are different!should be same</mat-error>
           </mat-form-field>
           <button mat-flat-button color="primary" type="submit">Sign Up</button>
         </form>

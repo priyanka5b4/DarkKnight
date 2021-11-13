@@ -26,8 +26,13 @@ exports.apiLogin = async (req, res) => {
   }
 };
 
-exports.apiSignUp = (req, res) => {
+exports.apiSignUp =async (req, res) => {
   console.log('Check');
+  try{
+  const email = req.body.email;
+  const user = await User.findOne({email});
+  
+  if(!user){
   const details = req.body;
   const user = new User(details);
   user.password = user.generateHash(user.password);
@@ -39,4 +44,40 @@ exports.apiSignUp = (req, res) => {
       res.status(200).json({ status: true, message: 'Account Created Successfully' });
     }
   });
+}
+else res.status(500).json({ status: false, message: 'Account exists!Please login' });
+  }
+  catch (error) {
+    console.log('error', error);
+    res.status(500).json({ status: false, message: 'Internal Server Error' });
+  }
 };
+
+exports.apiResetPass = async function(req,res){
+  console.log("chk");   
+  const { email , newPassword } = req.body;
+     try{
+     const user = await User.findOne({ email });
+     console.log(user);
+      if(!user){
+        res.status(500).json({ status: false, message: 'Invalid userMailId' });
+      }
+      else {
+       
+      user.password = user.generateHash(req.body.newPassword);
+        await user.save((err) => {
+          if (err) {
+            console.log('Error while Signing up: ', err);
+            res.status(500).json({ status: false, message: 'Internal Server Error' });
+          } else {
+            res.status(200).json({ status: true, message: 'updated password Successfully' });
+          }
+        });
+      }
+    }
+    catch (error) {
+      console.log('error', error);
+      res.status(500).json({ status: false, message: 'Internal Server Error' });
+    }
+      
+}

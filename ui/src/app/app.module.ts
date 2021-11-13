@@ -11,8 +11,17 @@ import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './core/login/login.component';
 import { AuthenticationService } from './core/authentication/authentication.service';
 import { ToastrModule } from 'ngx-toastr';
+import { PasswordResetComponent } from './core/login/password-reset/password-reset.component';
+
 @NgModule({
-  declarations: [AppComponent, ShellComponent, SideNavComponent, TopNavComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    ShellComponent,
+    SideNavComponent,
+    TopNavComponent,
+    LoginComponent,
+    PasswordResetComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, SharedModule.forRoot(), ToastrModule.forRoot()],
   providers: [AuthenticationService],
   bootstrap: [AppComponent],

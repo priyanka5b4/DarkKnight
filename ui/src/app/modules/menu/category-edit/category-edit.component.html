@@ -1,0 +1,10 @@
+<mat-form-field>
+  <mat-label>Name</mat-label>
+  <input matInput type="text" [(ngModel)]="categoryName" placeholder="Name of the Category" />
+</mat-form-field>
+<div *ngFor="let product of products | async">
+  <mat-checkbox [(ngModel)]="product.isLinked" style="padding: 0.2em">
+    <span style="font-size: medium; padding: 4px">{{ product.product.name }}</span>
+  </mat-checkbox>
+</div>
+<button (click)="update()" mat-button>Update</button>

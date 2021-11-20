@@ -27,23 +27,10 @@
         <mat-icon>add</mat-icon>
       </button>
     </mat-expansion-panel-header>
-    <div class="menu-grid">
-      <mat-card *ngFor="let product of products | async; let i = index" class="menu">
-        <div class="productHeader" fxLayout="row">
-          <img mat-card-avatar [src]="domSanitizer.bypassSecurityTrustUrl(product.icon)" />
-          <div fxLayout="column" style="flex: 1 1 auto">
-            <mat-card-title>{{ product.name }}</mat-card-title>
-            <mat-card-subtitle>Cost: {{ product.basePrice }}</mat-card-subtitle>
-          </div>
-        </div>
-        <mat-card-subtitle>{{ product.description }}</mat-card-subtitle>
-        <div fxLayout="row">
-          <span style="flex: 1 1 auto"></span>
-          <mat-icon (click)="editProduct(i)">edit</mat-icon>
-          <mat-icon>star_outline</mat-icon>
-          <mat-icon>visibility_off</mat-icon>
-        </div>
-      </mat-card>
-    </div>
+    <app-products-grid
+      [products]="products | async"
+      [productCardActions]="productCardActions"
+      [componentInstance]="this"
+    ></app-products-grid>
   </mat-expansion-panel>
 </mat-accordion>

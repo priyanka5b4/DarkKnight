@@ -3,8 +3,10 @@ const Menu = require('./menu.model');
 
 const getEmptyMenu = () => require('./EmptyMenu.json');
 
+const populateJson = {path: 'categories', populate: {path: 'products', model: 'Product'}};
+
 module.exports.readMenu = (id, cb) => {
-  datamodel.getDataById(id, Menu, cb);
+  datamodel.getDataByIdAndPopulate(Menu, id,populateJson, cb);
 };
 module.exports.updateMenu = (id, data, cb) => {
   datamodel.updateOneById(id, data, Menu, cb);
@@ -27,5 +29,5 @@ module.exports.deleteMenu = (id, cb) => {
 };
 
 module.exports.getAll = (user, cb) => {
-  datamodel.getDataByQuery({ user: user._id }, Menu, cb);
+  datamodel.getDataWithQueryAndPopulate(Menu, {user: user._id }, populateJson, cb);
 };

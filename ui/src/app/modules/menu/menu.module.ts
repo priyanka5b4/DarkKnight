@@ -6,9 +6,12 @@ import { MenuHomeComponent } from './menu-home/menu-home.component';
 import { MenuLandingComponent } from './menu-landing/menu-landing.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { CategoryEditComponent } from './category-edit/category-edit.component';
+import { ProductsGridComponent } from './products-grid/products-grid.component';
+import { ProductsListComponent } from './products-list/products-list.component';
 
 @NgModule({
-  declarations: [MenuHomeComponent, MenuLandingComponent, ProductFormComponent],
+  declarations: [MenuHomeComponent, MenuLandingComponent, ProductFormComponent, CategoryEditComponent, ProductsGridComponent, ProductsListComponent],
   imports: [CommonModule, MenuRoutingModule, SharedModule.forRoot()],
 })
 export class MenuModule {}

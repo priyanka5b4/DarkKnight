@@ -1,6 +1,7 @@
 export interface Category {
-  cname: String;
+  cname: string;
   products: Product[];
+  _id?: string;
 }
 export interface Menu {
   name: string;
@@ -20,4 +21,14 @@ export interface Product {
     }
   ];
   _id: string;
+}
+
+export interface ProductCardActions {
+  icon: string;
+  onClickFunction: string;
+}
+
+export interface ProductCardActionIndex {
+  productIndex: number;
+  actionFunction: string;
 }

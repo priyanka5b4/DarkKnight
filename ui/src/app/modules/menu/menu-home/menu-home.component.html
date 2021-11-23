@@ -12,7 +12,13 @@
 </div>
 <div>
   <mat-expansion-panel *ngFor="let category of (menu | async)?.categories">
-    <mat-expansion-panel-header> {{ category.cname }} </mat-expansion-panel-header>
-    content
+    <mat-expansion-panel-header>
+      <span style="justify-self: center; align-self: center">{{ category.cname }}</span>
+      <span style="flex: 1 1 auto"></span>
+      <button (click)="editCategory($event, category)" mat-icon-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-expansion-panel-header>
+    <app-products-grid [products]="category.products"></app-products-grid>
   </mat-expansion-panel>
 </div>

@@ -6,7 +6,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Menu, Product } from 'src/app/shared/types/menuTypes';
+import { Menu, Product, ProductCardActionIndex, ProductCardActions } from 'src/app/shared/types/menuTypes';
 import { MenuService } from '../menu-service/menu-service.service';
 import { ProductFormComponent } from '../product-form/product-form.component';
 
@@ -18,7 +18,9 @@ import { ProductFormComponent } from '../product-form/product-form.component';
 })
 export class MenuLandingComponent implements OnInit {
   menus = new BehaviorSubject<Menu[]>([]);
-  products = new BehaviorSubject<Product[]>([]);
+  products: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+
+  productCardActions: ProductCardActions[] = [{ icon: 'edit', onClickFunction: 'editProduct' }];
 
   constructor(
     private router: Router,
@@ -27,7 +29,9 @@ export class MenuLandingComponent implements OnInit {
     private toasterService: ToastrService,
     public domSanitizer: DomSanitizer,
     private dialog: MatDialog
-  ) {}
+  ) {
+    this.editProduct.bind(this.dialog);
+  }
 
   createMenu(event: MouseEvent) {
     event.stopPropagation();
@@ -74,7 +78,7 @@ export class MenuLandingComponent implements OnInit {
       })
       .afterClosed()
       .pipe(untilDestroyed(this))
-      .subscribe((res) => {
+      .subscribe((res: Product) => {
         if (res) {
           this.products.value[index] = res;
         }

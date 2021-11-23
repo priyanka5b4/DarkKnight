@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/authentication/auth.guard';
 import { LoginComponent } from './core/login/login.component';
+import { PasswordResetComponent } from './core/login/password-reset/password-reset.component';
 import { ShellComponent } from './core/shell/shell.component';
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'signup',
     component: LoginComponent,
+  },
+  {
+    path: 'EditPass',
+    component: PasswordResetComponent,
   },
 ];
 

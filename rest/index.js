@@ -7,6 +7,7 @@ db.connect(true);
 
 app.use('/login', require('./core/login/login').apiLogin);
 app.use('/signup', require('./core/login/login').apiSignUp);
+app.use('/resetpass', require('./core/login/login').apiResetPass);
 
 app.use('/menu', require('./modules/Menu/menu.routes'));
 app.use('/products', require('./modules/Product/product.routes'));

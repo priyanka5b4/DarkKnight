@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AuthenticationService } from '../authentication/authentication.service';
@@ -47,11 +47,25 @@ export class LoginComponent implements OnInit {
 
   signup() {
     this.authService
-      .signUp(this.signUpForm.value)
+      .signUp({
+        name: this.signUpForm.controls['businessName'].value,
+        email: this.signUpForm.controls['email'].value,
+        password: this.signUpForm.controls['password'].value,
+      })
       .pipe(untilDestroyed(this))
       .subscribe((signUpStatus) => {
         console.log(signUpStatus);
       });
+  }
+
+  onPasswordchange() {
+    if (this.signUpForm.controls['password'].value == this.passwordAgain.value) {
+      this.passwordAgain.setErrors(null);
+    } else this.passwordAgain.setErrors({ mismatch: true });
+  }
+
+  get passwordAgain(): AbstractControl {
+    return this.signUpForm.controls['passwordAgain'];
   }
 
   private createLoginForm() {
@@ -66,6 +80,7 @@ export class LoginComponent implements OnInit {
       businessName: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required],
+      passwordAgain: ['', Validators.required],
     });
   }
 }

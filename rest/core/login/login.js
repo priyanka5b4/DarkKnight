@@ -41,7 +41,7 @@ exports.apiSignUp =async (req, res) => {
       console.log('Error while Signing up: ', err);
       res.status(500).json({ status: false, message: 'Internal Server Error' });
     } else {
-      res.status(200).json({ status: true, message: 'Account Created Successfully' });
+      res.status(200).json({ status: true, message: 'Account Created Successfully! Login' });
     }
   });
 }

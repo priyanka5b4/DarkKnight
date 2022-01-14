@@ -8,6 +8,10 @@ import { Category, Menu, Product } from 'src/app/shared/types/menuTypes';
   providedIn: 'root',
 })
 export class MenuService {
+  deleteMenu(id: string) {
+     
+    return this.http.delete(`/api/menu/${id}`);
+  }
   constructor(private http: HttpClient) {}
 
   createEmptyMenu(): Observable<ResponseTypes.Genric | Menu> {

@@ -6,6 +6,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { Menu, Product, ProductCardActionIndex, ProductCardActions } from 'src/app/shared/types/menuTypes';
 import { MenuService } from '../menu-service/menu-service.service';
 import { ProductFormComponent } from '../product-form/product-form.component';
@@ -84,4 +85,36 @@ export class MenuLandingComponent implements OnInit {
         }
       });
   }
+
+  deleteMenu(id: string)
+  {
+    
+    this.dialog.open(ConfirmDialogComponent)
+    .afterClosed()
+    .pipe(untilDestroyed(this))
+    .subscribe((userInput: boolean) => {
+      if(userInput)
+      {
+        this.menuService.deleteMenu(id).subscribe(
+          (res) => {
+            var curMenus = this.menus.value;
+            for(let i =0;i<curMenus.length;i++)
+            {
+              if(curMenus[i]._id == id)
+              { 
+                
+                this.menus = new BehaviorSubject<Menu[]>(curMenus.slice(1 , i).concat(curMenus.slice(i+1,length+1)));
+                 break;
+              }
+            }
+            this.toasterService.success('deleted Successfully');
+           },
+          (err) => {
+            this.toasterService.error(err);
+          }
+        );
+      }
+      }
+    )
+    }
 }

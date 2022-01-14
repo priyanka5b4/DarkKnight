@@ -34,6 +34,7 @@ router.put('/:id', (req, res) => {
   });
 });
 router.delete('/:id', (req, res) => {
+  console.log("delete");
   menuService.deleteMenu(req.params.id, (err, result) => {
     if (err) {
       res.status(404).send({ message: 'Menu not Found' });

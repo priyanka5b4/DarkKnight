@@ -55,6 +55,9 @@ export class LoginComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe((signUpStatus) => {
         console.log(signUpStatus);
+        if (signUpStatus) {
+          this.router.navigate(['login']);
+        }
       });
   }
 

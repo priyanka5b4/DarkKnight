@@ -10,13 +10,13 @@
       </button>
     </mat-expansion-panel-header>
     <div class="menu-grid">
-      <mat-card *ngFor="let menu of menus | async" (dblclick)="openMenu(menu._id)" class="menu">
+      <mat-card *ngFor="let menu of menus | async; let i = index" (dblclick)="openMenu(menu._id)" class="menu">
         <mat-card-header>
           <mat-card-title>{{ menu.name }}</mat-card-title>
           <mat-card-subtitle>Categories: {{ menu.categories.length }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <button mat-icon-button class="button-pull-right" (click)="deleteMenu(menu._id)">
+          <button mat-icon-button class="button-pull-right" (click)="deleteMenu(i)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-content>

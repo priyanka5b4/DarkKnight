@@ -1,7 +1,8 @@
 const datamodel = require('../../core/dbLib/data.service');
 const Menu = require('./menu.model');
+const utils = require('../../core/utils/utils');
 
-const getEmptyMenu = () => require('./EmptyMenu.json');
+const getEmptyMenu = () => utils.clone(require('./EmptyMenu.json'));
 
 const populateJson = {path: 'categories', populate: {path: 'products', model: 'Product'}};
 

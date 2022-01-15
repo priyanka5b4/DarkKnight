@@ -9,7 +9,6 @@ import { Category, Menu, Product } from 'src/app/shared/types/menuTypes';
 })
 export class MenuService {
   deleteMenu(id: string) {
-     
     return this.http.delete(`/api/menu/${id}`);
   }
   constructor(private http: HttpClient) {}

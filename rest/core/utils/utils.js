@@ -2,7 +2,8 @@ const dataLib = require('../dbLib/data.service');
 
 module.exports.getRandomId = (len) => {
   let result = '';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const charactersLength = characters.length;
   for (let i = 0; i < len; i += 1) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));

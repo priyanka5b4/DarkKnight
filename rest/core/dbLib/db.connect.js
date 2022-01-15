@@ -14,12 +14,12 @@ module.exports.connect = (autoReconnect) => {
   console.log(`DB AUTO RECONNECT: ${dbOptions.auto_reconnect}`);
   console.log(envConfig);
   const connect = () => {
-    mongoose.connect(envConfig.connString, dbOptions).catch(rejected => {
+    mongoose.connect(envConfig.connString, dbOptions).catch((rejected) => {
       console.log('Failed Connecting to DB' + rejected);
       console.log('Trying to reconnect');
       connect();
-    })
-  }
+    });
+  };
 
   connect();
 

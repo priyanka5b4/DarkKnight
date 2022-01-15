@@ -2,6 +2,7 @@
   "singleQuote": true,
   "arrow-body-style": "off",
   "prefer-arrow-callback": "off",
+  "endOfLine": "lf",
   "printWidth": 120,
   "overrides": [
     {

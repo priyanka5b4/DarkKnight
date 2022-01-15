@@ -86,35 +86,31 @@ export class MenuLandingComponent implements OnInit {
       });
   }
 
-  deleteMenu(id: string)
-  {
-    
-    this.dialog.open(ConfirmDialogComponent)
-    .afterClosed()
-    .pipe(untilDestroyed(this))
-    .subscribe((userInput: boolean) => {
-      if(userInput)
-      {
-        this.menuService.deleteMenu(id).subscribe(
-          (res) => {
-            var curMenus = this.menus.value;
-            for(let i =0;i<curMenus.length;i++)
-            {
-              if(curMenus[i]._id == id)
-              { 
-                
-                this.menus = new BehaviorSubject<Menu[]>(curMenus.slice(1 , i).concat(curMenus.slice(i+1,length+1)));
-                 break;
+  deleteMenu(id: string) {
+    this.dialog
+      .open(ConfirmDialogComponent)
+      .afterClosed()
+      .pipe(untilDestroyed(this))
+      .subscribe((userInput: boolean) => {
+        if (userInput) {
+          this.menuService.deleteMenu(id).subscribe(
+            (res) => {
+              var curMenus = this.menus.value;
+              for (let i = 0; i < curMenus.length; i++) {
+                if (curMenus[i]._id == id) {
+                  this.menus = new BehaviorSubject<Menu[]>(
+                    curMenus.slice(1, i).concat(curMenus.slice(i + 1, length + 1))
+                  );
+                  break;
+                }
               }
+              this.toasterService.success('deleted Successfully');
+            },
+            (err) => {
+              this.toasterService.error(err);
             }
-            this.toasterService.success('deleted Successfully');
-           },
-          (err) => {
-            this.toasterService.error(err);
-          }
-        );
-      }
-      }
-    )
-    }
+          );
+        }
+      });
+  }
 }

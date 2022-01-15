@@ -59,7 +59,7 @@ export class AuthenticationService {
   signUp(signUpValues: SignUpForm) {
     return this.http.post<AuthenticationResponse>('/api/signup', signUpValues);
   }
-  passReset(ResetValues: LoginForm){
+  passReset(ResetValues: LoginForm) {
     return this.http.post<AuthenticationResponse>('/api/resetpass', ResetValues);
   }
 

@@ -40,7 +40,12 @@ exports.getDataWithQueryAndPopulate = (DataModel, query, populateJson, cb) => {
     });
 };
 
-exports.getSingleDataWithQueryAndPopulate = (DataModel, query, populateJson, cb) => {
+exports.getSingleDataWithQueryAndPopulate = (
+  DataModel,
+  query,
+  populateJson,
+  cb
+) => {
   console.log(`Getting Data With Populate and Query :${query}`);
   DataModel.findOne(query)
     .populate(populateJson)
@@ -71,7 +76,12 @@ exports.getSingleDataByQuery = (query, DataModel, cb) => {
   });
 };
 
-exports.getSingleDataByQueryAndSortedOnField = (query, fieldName, DataModel, cb) => {
+exports.getSingleDataByQueryAndSortedOnField = (
+  query,
+  fieldName,
+  DataModel,
+  cb
+) => {
   console.log(`Getting Data with Query ${JSON.stringify(query)}`);
   DataModel.findOne(query)
     .sort(fieldName)

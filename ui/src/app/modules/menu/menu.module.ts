@@ -11,7 +11,14 @@ import { ProductsGridComponent } from './products-grid/products-grid.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 
 @NgModule({
-  declarations: [MenuHomeComponent, MenuLandingComponent, ProductFormComponent, CategoryEditComponent, ProductsGridComponent, ProductsListComponent],
+  declarations: [
+    MenuHomeComponent,
+    MenuLandingComponent,
+    ProductFormComponent,
+    CategoryEditComponent,
+    ProductsGridComponent,
+    ProductsListComponent,
+  ],
   imports: [CommonModule, MenuRoutingModule, SharedModule.forRoot()],
 })
 export class MenuModule {}

@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const menuService = require('./menu.service');
+const orderService = require('./order.service');
 const middleware = require('../../core/middleware/verifyUser');
 
 router.get('/all', middleware.verifyToken, (req, res) => {
-  menuService.getAll(req.user, (err, result) => {
+  orderService.getAll(req.user, (err, result) => {
     if (err) {
       res.status(500).send({ message: 'Internal Server Error' });
     } else {
@@ -13,9 +13,9 @@ router.get('/all', middleware.verifyToken, (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  menuService.readMenu(req.params.id, (err, result) => {
+  orderService.readOrder(req.params.id, (err, result) => {
     if (err) {
-      res.status(404).send({ message: 'Menu not Found' });
+      res.status(404).send({ message: 'Order not Found' });
     } else {
       res.status(200).send(result);
     }
@@ -25,9 +25,9 @@ router.get('/:id', (req, res) => {
 router.all('*', middleware.verifyToken);
 
 router.put('/:id', (req, res) => {
-  menuService.updateMenu(req.params.id, req.body, (err, result) => {
+  orderService.updateorder(req.params.id, req.body, (err, result) => {
     if (err) {
-      res.status(404).send({ message: 'Menu not Found' });
+      res.status(404).send({ message: 'Order not Found' });
     } else {
       res.status(200).send(result);
     }
@@ -35,16 +35,16 @@ router.put('/:id', (req, res) => {
 });
 router.delete('/:id', (req, res) => {
   console.log('delete');
-  menuService.deleteMenu(req.params.id, (err, result) => {
+  orderService.deleteOrder(req.params.id, (err, result) => {
     if (err) {
-      res.status(404).send({ message: 'Menu not Found' });
+      res.status(404).send({ message: 'Order not Found' });
     } else {
       res.status(200).send(result);
     }
   });
 });
 router.post('/', (req, res) => {
-  menuService.createMenu(req.user, req.body, (err, result) => {
+  orderService.createOrder(req.user, req.body, (err, result) => {
     if (err) {
       res.status(500).send({ message: 'Internal Server Error' });
     } else {

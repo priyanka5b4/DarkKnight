@@ -67,7 +67,9 @@
 
 .active {
   cursor: pointer;
-  color: #561f89;
+  * {
+    color: #561f89;
+  }
 }
 
 :host a {

@@ -4,12 +4,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { ResponseTypes } from 'src/app/shared/types/httpResponses';
 import { Menu, Product, ProductCardActionIndex, ProductCardActions } from 'src/app/shared/types/menuTypes';
 import { MenuService } from '../menu-service/menu-service.service';
 import { ProductFormComponent } from '../product-form/product-form.component';
+import { ProductService } from '../products-services/product-service.service';
 
 @UntilDestroy()
 @Component({
@@ -21,7 +23,10 @@ export class MenuLandingComponent implements OnInit {
   menus = new BehaviorSubject<Menu[]>([]);
   products: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
 
-  productCardActions: ProductCardActions[] = [{ icon: 'edit', onClickFunction: 'editProduct' }];
+  productCardActions: ProductCardActions[] = [
+    { icon: 'edit', onClickFunction: 'editProduct' },
+    { icon: 'delete', onClickFunction: 'deleteProduct' },
+  ];
 
   constructor(
     private router: Router,
@@ -29,7 +34,8 @@ export class MenuLandingComponent implements OnInit {
     private menuService: MenuService,
     private toasterService: ToastrService,
     public domSanitizer: DomSanitizer,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private productsService: ProductService
   ) {
     this.editProduct.bind(this.dialog);
   }
@@ -50,16 +56,7 @@ export class MenuLandingComponent implements OnInit {
 
   createProduct(event: MouseEvent) {
     event.stopPropagation();
-    this.menuService.createEmptyProduct().subscribe(
-      (res) => {
-        this.toasterService.success('Created Empty Product Successfully');
-        const curProducts = this.products.value;
-        curProducts.push(res as Product);
-      },
-      (err) => {
-        this.toasterService.error(err);
-      }
-    );
+    this.productsService.createProduct();
   }
 
   openMenu(id: string) {
@@ -73,44 +70,53 @@ export class MenuLandingComponent implements OnInit {
   }
 
   editProduct(index: number) {
-    this.dialog
-      .open(ProductFormComponent, {
-        data: this.products.value[index],
-      })
-      .afterClosed()
-      .pipe(untilDestroyed(this))
-      .subscribe((res: Product) => {
-        if (res) {
-          this.products.value[index] = res;
-        }
-      });
+    this.productsService.editProduct(index);
   }
 
-  deleteMenu(id: string) {
-    this.dialog
-      .open(ConfirmDialogComponent)
-      .afterClosed()
-      .pipe(untilDestroyed(this))
-      .subscribe((userInput: boolean) => {
-        if (userInput) {
-          this.menuService.deleteMenu(id).subscribe(
-            (res) => {
-              var curMenus = this.menus.value;
-              for (let i = 0; i < curMenus.length; i++) {
-                if (curMenus[i]._id == id) {
-                  this.menus = new BehaviorSubject<Menu[]>(
-                    curMenus.slice(1, i).concat(curMenus.slice(i + 1, length + 1))
-                  );
-                  break;
-                }
-              }
-              this.toasterService.success('deleted Successfully');
-            },
-            (err) => {
-              this.toasterService.error(err);
-            }
-          );
-        }
-      });
+  deleteItem(id: string): Observable<boolean> {
+    return this.dialog.open(ConfirmDialogComponent).afterClosed().pipe(untilDestroyed(this)) as Observable<boolean>;
+  }
+
+  deleteMenu(index: number) {
+    const id = this.menus.value[index]._id;
+    this.deleteItem(id).subscribe((userInput: boolean) => {
+      if (userInput) {
+        this.menuService.deleteMenu(id).subscribe(
+          (res) => {
+            var curMenus = this.menus.value;
+
+            this.menus = new BehaviorSubject<Menu[]>(
+              curMenus.slice(1, index).concat(curMenus.slice(index, curMenus.length))
+            );
+
+            this.toasterService.success('deleted Successfully');
+          },
+          (err) => {
+            this.toasterService.error(err);
+          }
+        );
+      }
+    });
+  }
+
+  deleteProduct(index: number) {
+    const id = this.products.value[index]._id;
+    this.deleteItem(id).subscribe((userInput: boolean) => {
+      if (userInput) {
+        this.menuService.deleteProducts(id).subscribe(
+          (res) => {
+            var curMenus = this.products.value;
+
+            this.products = new BehaviorSubject<Product[]>(
+              curMenus.slice(1, index).concat(curMenus.slice(index + 1, curMenus.length))
+            );
+            this.toasterService.success('deleted Successfully');
+          },
+          (err) => {
+            this.toasterService.error(err);
+          }
+        );
+      }
+    });
   }
 }

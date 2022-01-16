@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,4 +26,7 @@ import { PasswordResetComponent } from './core/login/password-reset/password-res
   providers: [AuthenticationService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+
+export class AppModule {
+   
+}

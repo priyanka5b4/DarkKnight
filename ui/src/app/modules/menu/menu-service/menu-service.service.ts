@@ -8,9 +8,6 @@ import { Category, Menu, Product } from 'src/app/shared/types/menuTypes';
   providedIn: 'root',
 })
 export class MenuService {
-  deleteMenu(id: string) {
-    return this.http.delete(`/api/menu/${id}`);
-  }
   constructor(private http: HttpClient) {}
 
   createEmptyMenu(): Observable<ResponseTypes.Genric | Menu> {
@@ -39,5 +36,13 @@ export class MenuService {
 
   updateMenu(menu: Menu) {
     return this.http.put(`/api/menu/${menu._id}`, menu);
+  }
+
+  deleteMenu(id: string) {
+    return this.http.delete(`/api/menu/${id}`);
+  }
+
+  deleteProducts(id: string) {
+    return this.http.delete(`/api/products/${id}`);
   }
 }

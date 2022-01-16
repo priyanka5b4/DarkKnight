@@ -1,20 +1,5 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable consistent-return */
 const jwt = require('jsonwebtoken');
 const envConfig = require('../config/config').get_config();
-
-exports.isUserAdmin = (req, res, next) => {
-  // if user is authenticated in the session, carry on
-  if (req.user && req.user.role === 'admin') {
-    return next();
-  }
-};
-
-exports.isUserAuthorOrAdmin = (req, res, next) => {
-  // if user is authenticated in the session, carry on
-  if (req.user && (req.user.role === 'admin' || req.user.role === 'author'))
-    return next();
-};
 
 exports.verifyToken = (req, res, next) => {
   if (

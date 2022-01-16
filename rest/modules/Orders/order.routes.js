@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const orderService = require('./order.service');
-const middleware = require('../../core/middleware/verifyUser');
+const middleware = require('../../core/middleware/middleware');
 
 router.get('/all', middleware.verifyToken, (req, res) => {
   orderService.getAll(req.user, (err, result) => {
@@ -23,6 +23,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.all('*', middleware.verifyToken);
+router.all('*', middleware.verifyOwner('user'));
 
 router.put('/:id', (req, res) => {
   orderService.updateorder(req.params.id, req.body, (err, result) => {

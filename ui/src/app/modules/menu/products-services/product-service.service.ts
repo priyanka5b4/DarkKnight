@@ -8,17 +8,15 @@ import { MenuService } from '../menu-service/menu-service.service';
 import { ProductFormComponent } from '../product-form/product-form.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
   products: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
-  
-  constructor(private menuService : MenuService,
-    private dialog: MatDialog, private toasterService: ToastrService) { 
-      this.editProduct.bind(this.dialog);
-    }
 
-  
+  constructor(private menuService: MenuService, private dialog: MatDialog, private toasterService: ToastrService) {
+    this.editProduct.bind(this.dialog);
+  }
+
   editProduct(index: number) {
     this.dialog
       .open(ProductFormComponent, {
@@ -34,7 +32,7 @@ export class ProductService {
   }
 
   createProduct() {
-     this.menuService.createEmptyProduct().subscribe(
+    this.menuService.createEmptyProduct().subscribe(
       (res) => {
         this.toasterService.success('Created Empty Product Successfully');
         const curProducts = this.products.value;
@@ -45,8 +43,4 @@ export class ProductService {
       }
     );
   }
-
-
-
-  
 }

@@ -38,11 +38,11 @@ export class MenuService {
     return this.http.put(`/api/menu/${menu._id}`, menu);
   }
 
-  deleteMenu(id: string) {
-    return this.http.delete(`/api/menu/${id}`);
+  deleteMenu(menu: Menu) {
+    return this.http.delete(`/api/menu/${menu._id}`, { body: menu });
   }
 
-  deleteProducts(id: string) {
-    return this.http.delete(`/api/products/${id}`);
+  deleteProducts(product: Product) {
+    return this.http.delete(`/api/products/${product._id}`, { body: product });
   }
 }

@@ -78,10 +78,11 @@ export class MenuLandingComponent implements OnInit {
   }
 
   deleteMenu(index: number) {
-    const id = this.menus.value[index]._id;
+    const menu = this.menus.value[index];
+    const id = menu._id;
     this.deleteItem(id).subscribe((userInput: boolean) => {
       if (userInput) {
-        this.menuService.deleteMenu(id).subscribe(
+        this.menuService.deleteMenu(menu).subscribe(
           (res) => {
             var curMenus = this.menus.value;
 
@@ -100,10 +101,11 @@ export class MenuLandingComponent implements OnInit {
   }
 
   deleteProduct(index: number) {
-    const id = this.products.value[index]._id;
+    const product = this.products.value[index];
+    const id = product._id;
     this.deleteItem(id).subscribe((userInput: boolean) => {
       if (userInput) {
-        this.menuService.deleteProducts(id).subscribe(
+        this.menuService.deleteProducts(product).subscribe(
           (res) => {
             var curMenus = this.products.value;
 

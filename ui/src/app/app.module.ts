@@ -26,7 +26,4 @@ import { PasswordResetComponent } from './core/login/password-reset/password-res
   providers: [AuthenticationService],
   bootstrap: [AppComponent],
 })
-
-export class AppModule {
-   
-}
+export class AppModule {}

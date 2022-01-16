@@ -14,13 +14,13 @@ export interface AuthenticationResponse {
 }
 
 export interface SignUpForm {
-  name: string;
+  businessName: string;
   email: string;
   password: string;
 }
 
 export interface TokenData {
-  userName: string;
+  businessName: string;
   email: string;
 }
 
@@ -78,7 +78,7 @@ export class AuthenticationService {
   getTokenData(): TokenData {
     const tokenData: string | null = localStorage.getItem('tokenData');
     if (!tokenData) {
-      return { userName: 'Broke', email: 'Broke' };
+      return { businessName: 'Broke', email: 'Broke' };
     }
     return JSON.parse(tokenData) as TokenData;
   }

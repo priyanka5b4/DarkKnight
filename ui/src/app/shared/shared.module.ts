@@ -13,9 +13,10 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { RunScriptsDirective } from './directives/run-scripts.directive';
 import { LoadingInterceptor } from '../core/interceptors/loading.interceptor';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { DisplayDetailsComponent } from './components/display-details/display-details.component';
 
 @NgModule({
-  declarations: [TimeConversionPipe, SafeHtmlPipe, RunScriptsDirective, ConfirmDialogComponent],
+  declarations: [TimeConversionPipe, SafeHtmlPipe, RunScriptsDirective, ConfirmDialogComponent, DisplayDetailsComponent],
   imports: [CommonModule, MaterialModule, FlexLayoutModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   exports: [
     MaterialModule,

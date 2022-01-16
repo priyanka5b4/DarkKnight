@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   signup() {
     this.authService
       .signUp({
-        name: this.signUpForm.controls['businessName'].value,
+        businessName: this.signUpForm.controls['businessName'].value,
         email: this.signUpForm.controls['email'].value,
         password: this.signUpForm.controls['password'].value,
       })

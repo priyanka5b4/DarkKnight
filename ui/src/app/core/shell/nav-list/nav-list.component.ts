@@ -19,15 +19,15 @@ export class NavListComponent implements OnInit {
 
   tokenData: TokenData;
 
-  mobileItems: NavListItem[] = [
+  commonItems: NavListItem[] = [
     { icon: 'home', route: 'home', name: 'Home' },
     { icon: 'list_alt', route: 'menu', name: 'Menus' },
+    { icon: 'inventory_2', route: 'products', name: 'Prooducts' },
   ];
 
-  normalItems: NavListItem[] = [
-    { icon: 'home', route: 'home', name: 'Home' },
-    { icon: 'list_alt', route: 'menu', name: 'Menus' },
-  ];
+  mobileItems: NavListItem[] = [...this.commonItems];
+
+  normalItems: NavListItem[] = [...this.commonItems];
 
   constructor(private router: Router, private authService: AuthenticationService) {
     this.tokenData = this.authService.getTokenData();

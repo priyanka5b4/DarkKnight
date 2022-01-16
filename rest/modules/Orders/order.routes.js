@@ -23,6 +23,16 @@ router.get('/:id', (req, res) => {
 });
 
 router.all('*', middleware.verifyToken);
+router.post('/', (req, res) => {
+  orderService.createOrder(req.user, req.body, (err, result) => {
+    if (err) {
+      res.status(500).send({ message: 'Internal Server Error' });
+    } else {
+      res.status(200).send(result);
+    }
+  });
+});
+
 router.all('*', middleware.verifyOwner('user'));
 
 router.put('/:id', (req, res) => {
@@ -39,15 +49,6 @@ router.delete('/:id', (req, res) => {
   orderService.deleteOrder(req.params.id, (err, result) => {
     if (err) {
       res.status(404).send({ message: 'Order not Found' });
-    } else {
-      res.status(200).send(result);
-    }
-  });
-});
-router.post('/', (req, res) => {
-  orderService.createOrder(req.user, req.body, (err, result) => {
-    if (err) {
-      res.status(500).send({ message: 'Internal Server Error' });
     } else {
       res.status(200).send(result);
     }

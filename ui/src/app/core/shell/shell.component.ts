@@ -15,8 +15,10 @@ export class ShellComponent implements OnInit {
     this.breakpointObserver.observe(['(min-width: 768px)']).subscribe((state: BreakpointState) => {
       if (state.matches) {
         this.smallScreen.next(false);
+        localStorage.setItem('smalScreen', 'false');
       } else {
         this.smallScreen.next(true);
+        localStorage.setItem('smallScreen', 'true');
       }
     });
   }

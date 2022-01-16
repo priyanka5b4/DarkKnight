@@ -8,9 +8,8 @@ describe('MobileShellComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MobileShellComponent ]
-    })
-    .compileComponents();
+      declarations: [MobileShellComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

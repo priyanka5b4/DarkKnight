@@ -1,2 +1,23 @@
-<span class="brand-icon"><mat-icon>breakfast_dining </mat-icon></span>
-<span class="title">Brand Name</span>
+<div *ngIf="device === 'mobile'; else default" class="mobile">
+  <span class="brand-icon"><mat-icon>breakfast_dining </mat-icon></span>
+  <span class="title">Brand Name</span>
+  <span style="flex: 1 1 auto"></span>
+  <span class="title-action">
+    <mat-icon>account_circle</mat-icon>
+  </span>
+</div>
+
+<ng-template #default>
+  <div class="default">
+    <span class="menu-icon">
+      <mat-icon>menu</mat-icon>
+    </span>
+    <span class="brand-icon"><mat-icon>breakfast_dining </mat-icon></span>
+    <span class="title">Brand Name</span>
+
+    <span style="flex: 1 1 auto"></span>
+    <span class="title-action">
+      <mat-icon>account_circle</mat-icon>
+    </span>
+  </div>
+</ng-template>

@@ -1,15 +1,2 @@
-<div class="main-contanier">
-  <div class="side-nav-list" fxFlex>
-    <app-side-nav></app-side-nav>
-  </div>
-
-  <div fxLayout="column" fxFlex>
-    <div class="primary-nav">
-      <app-top-nav></app-top-nav>
-    </div>
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-  <span class="right-bar"></span>
-</div>
+<app-normal-shell class="container" fxHide.lt-sm fxHide.sm> </app-normal-shell>
+<app-mobile-shell class="container" fxHide.gt-sm> </app-mobile-shell>

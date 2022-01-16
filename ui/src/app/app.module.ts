@@ -5,22 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShellComponent } from './core/shell/shell.component';
-import { SideNavComponent } from './core/shell/side-nav/side-nav.component';
-import { TopNavComponent } from './core/shell/top-nav/top-nav.component';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './core/login/login.component';
 import { AuthenticationService } from './core/authentication/authentication.service';
 import { ToastrModule } from 'ngx-toastr';
 import { PasswordResetComponent } from './core/login/password-reset/password-reset.component';
+import { MobileShellComponent } from './core/shell/mobile-shell/mobile-shell.component';
+import { NormalShellComponent } from './core/shell/normal-shell/normal-shell.component';
+import { NavListComponent } from './core/shell/nav-list/nav-list.component';
+import { TitleBarComponent } from './core/shell/title-bar/title-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShellComponent,
-    SideNavComponent,
-    TopNavComponent,
     LoginComponent,
     PasswordResetComponent,
+    MobileShellComponent,
+    NormalShellComponent,
+    NavListComponent,
+    TitleBarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, SharedModule.forRoot(), ToastrModule.forRoot()],
   providers: [AuthenticationService],

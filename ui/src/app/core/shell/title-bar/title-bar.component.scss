@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.brand-icon {
+  height: 32px;
+  width: 32px;
+  padding: 8px;
+  mat-icon {
+    font-size: 32px;
+  }
+}

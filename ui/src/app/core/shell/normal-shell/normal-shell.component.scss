@@ -1,0 +1,17 @@
+:host {
+  display: grid;
+  grid-template-areas: 'title title' 'nav body';
+  grid-template-rows: 48px 1fr;
+  grid-template-columns: 64px 1fr;
+}
+.title-bar {
+  grid-area: title;
+}
+.nav-list {
+  grid-area: nav;
+}
+
+.body {
+  grid-area: body;
+  background-color: rgb(250, 249, 249);
+}

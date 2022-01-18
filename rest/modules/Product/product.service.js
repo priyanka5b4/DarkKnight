@@ -1,8 +1,8 @@
 const datamodel = require('../../core/dbLib/data.service');
 const Product = require('./product.model');
-const utils = require('../../core/utils/utils');
 
-const getEmptyProduct = () =>  utils.clone(require('./EmptyProduct.json'));
+
+const getEmptyProduct = () =>  require('./EmptyProduct.json');
 
 module.exports.readProduct = (id, cb) => {
   datamodel.getDataById(id, Product, cb);

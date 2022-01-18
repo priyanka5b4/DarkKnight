@@ -23,6 +23,8 @@ module.exports.getUniqueId = (dataModel, attributeName, cb) => {
     cb(id);
   });
 };
-module.exports.clone = (obj) => (JSON.parse(JSON.stringify(obj)));
+module.exports.clone = (obj) => {
+  JSON.parse(JSON.stringify(obj));
+}
     
 

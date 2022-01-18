@@ -27,6 +27,6 @@ export class ProductsGridComponent implements OnInit {
 
   onClick(actionFunction: string, pIndex: number) {
     this.componentInstance[actionFunction](pIndex);
-    // this.productActionClicked.emit({ actionFunction, productIndex: pIndex });
+    
   }
 }

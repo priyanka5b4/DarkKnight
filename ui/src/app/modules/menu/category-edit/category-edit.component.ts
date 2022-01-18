@@ -5,8 +5,9 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Category, Product } from 'src/app/shared/types/menuTypes';
+import { ProductService } from '../../products/products-services/product-service.service';
 import { MenuService } from '../menu-service/menu-service.service';
-import { ProductFormComponent } from '../product-form/product-form.component';
+  
 
 interface categoryProduct {
   product: Product;
@@ -27,7 +28,7 @@ export class CategoryEditComponent implements OnInit {
     public dialogRef: MatDialogRef<CategoryEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Category,
     private formBuilder: FormBuilder,
-    private menuService: MenuService
+    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +39,7 @@ export class CategoryEditComponent implements OnInit {
     this.categoryName = this.data.cname;
     this.linkedProducts = this.data.products;
     console.log(this.linkedProducts);
-    this.menuService
+    this.productService
       .getProducts()
       .pipe(
         untilDestroyed(this),

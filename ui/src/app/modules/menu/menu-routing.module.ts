@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MenuHomeComponent } from './menu-home/menu-home.component';
-import { MenuLandingComponent } from './menu-landing/menu-landing.component';
-import { MenuResolver } from './resolvers/menu.resolver';
-import { MenusResolver } from './resolvers/menus.resolver';
-import { ProductsResolver } from './resolvers/products.resolver';
+import { MenuLandingComponent } from './menu-list/menu-landing.component';
+import { MenuResolver } from '../resolvers/menu.resolver';
+import { MenusResolver } from '../resolvers/menus.resolver';
+import { ProductsResolver } from '../resolvers/products.resolver';
 
 const routes: Routes = [
   {
@@ -12,8 +12,7 @@ const routes: Routes = [
     component: MenuLandingComponent,
     resolve: {
       menus: MenusResolver,
-      products: ProductsResolver,
-    },
+     },
   },
   {
     path: ':id',

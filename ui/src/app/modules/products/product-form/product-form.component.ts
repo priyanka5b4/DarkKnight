@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/shared/types/menuTypes';
-import { MenuService } from '../menu-service/menu-service.service';
+import { ProductService } from '../products-services/product-service.service';
 
 @Component({
   selector: 'app-product-form',
@@ -18,7 +18,7 @@ export class ProductFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Product,
     private formBuilder: FormBuilder,
     public domSanitizer: DomSanitizer,
-    private menuService: MenuService,
+    private productService: ProductService,
     private toaster: ToastrService
   ) {}
 
@@ -52,7 +52,7 @@ export class ProductFormComponent implements OnInit {
 
   update() {
     if (this.productForm.valid) {
-      this.menuService.updateProduct(this.productForm.value).subscribe(
+      this.productService.updateProduct(this.productForm.value).subscribe(
         () => {
           this.dialogRef.close(this.productForm.value);
           this.toaster.success('Updated Product Successfully');

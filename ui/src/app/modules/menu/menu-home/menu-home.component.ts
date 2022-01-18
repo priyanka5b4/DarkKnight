@@ -8,7 +8,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { Category, Menu } from 'src/app/shared/types/menuTypes';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
 import { MenuService } from '../menu-service/menu-service.service';
-import { ProductFormComponent } from '../product-form/product-form.component';
+
 
 @UntilDestroy()
 @Component({

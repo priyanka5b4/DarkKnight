@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Menu } from 'src/app/shared/types/menuTypes';
-import { MenuService } from '../menu-service/menu-service.service';
+import { MenuService } from '../menu/menu-service/menu-service.service';
 
 @Injectable({
   providedIn: 'root',

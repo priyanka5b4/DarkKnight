@@ -22,17 +22,7 @@ export class MenuService {
     return this.http.get(`/api/menu/all`) as Observable<Menu[]>;
   }
 
-  createEmptyProduct(): Observable<ResponseTypes.Genric | Product> {
-    return this.http.post('/api/products', { empty: true }) as Observable<ResponseTypes.Genric | Product>;
-  }
-
-  getProducts() {
-    return this.http.get('/api/products/all') as Observable<Product[]>;
-  }
-
-  updateProduct(body: Product) {
-    return this.http.put(`/api/products/${body._id}`, body);
-  }
+  
 
   updateMenu(menu: Menu) {
     return this.http.put(`/api/menu/${menu._id}`, menu);
@@ -42,7 +32,5 @@ export class MenuService {
     return this.http.delete(`/api/menu/${menu._id}`, { body: menu });
   }
 
-  deleteProducts(product: Product) {
-    return this.http.delete(`/api/products/${product._id}`, { body: product });
-  }
+  
 }

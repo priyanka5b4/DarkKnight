@@ -3,22 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { MenuRoutingModule } from './menu-routing.module';
 import { MenuHomeComponent } from './menu-home/menu-home.component';
-import { MenuLandingComponent } from './menu-landing/menu-landing.component';
+import { MenuLandingComponent } from './menu-list/menu-landing.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ProductFormComponent } from './product-form/product-form.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
-import { ProductsGridComponent } from './products-grid/products-grid.component';
-import { ProductsListComponent } from './products-list/products-list.component';
+import { ProductsModule } from '../products/products.module';
+
 
 @NgModule({
   declarations: [
     MenuHomeComponent,
     MenuLandingComponent,
-    ProductFormComponent,
     CategoryEditComponent,
-    ProductsGridComponent,
-    ProductsListComponent,
   ],
-  imports: [CommonModule, MenuRoutingModule, SharedModule.forRoot()],
+  imports: [CommonModule, MenuRoutingModule, ProductsModule, SharedModule.forRoot()]
 })
 export class MenuModule {}
